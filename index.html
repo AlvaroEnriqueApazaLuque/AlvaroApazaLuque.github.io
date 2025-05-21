@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Presentación Personal</title>
+    <style>
+        /* Estilos generales */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --accent-color: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        /* Navbar */
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+        
+        .logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Main content */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-color);
+            font-size: 1.8rem;
+        }
+        
+        h3 {
+            color: var(--secondary-color);
+            margin: 1.5rem 0 1rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        /* About section */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .skill {
+            background-color: var(--light-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* Education section */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Hobbies section */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .hobby-card {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .hobby-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hobby-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .hobby-content {
+            padding: 1rem;
+        }
+        
+        /* Teachers section */
+        .teacher-card {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--light-color);
+        }
+        
+        .teacher-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .teacher-info {
+            flex: 1;
+        }
+        
+        .teacher-name {
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+        
+        .teacher-subject {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Contact section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-icon {
+            margin-right: 1rem;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        form {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+            }
+            
+            .nav-links li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            
+            .teacher-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .teacher-img {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Alvaro Apaza Luque</h1>
+            <p class="tagline">Estudiante de Administracion de la UCSP</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <div class="logo">0_o </div>
+            <ul class="nav-links">
+                <li><a href="#about">Sobre mí</a></li>
+                <li><a href="#education">Estudios</a></li>
+                <li><a href="#hobbies">Hobbies</a></li>
+                <li><a href="#teachers">Profesores</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="container">
+        <section id="about">
+            <h2>Sobre Mí</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hola soy Alvaro, un estudiante de la carrera de Administracion de la Universidad Catolica San Pablo. Me considero una persona quea es muy calmada cuando entra en confianza puede ser un poquito molestoso.</p>
+                    <h3>Mis habilidades</h3>
+                    <div class="skills">
+                        <span class="skill">Amable</span>
+                        <span class="skill">Saber escuchar</span>
+                        <span class="skill">Pasion por lo que me gusta</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="education">
+            <h2>Educación</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2023 - Presente</div>
+                    <h3>Universidada Catolica San Pablo</h3>
+                    <p><strong>Carrera:</strong> Administracion</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="hobbies">
+            <h2>Mis Hobbies e Intereses</h2>
+            <div class="hobbies-grid">
+                <div class="hobby-card">
+                    <div class="hobby-content">
+                        <h3>Taekwondo</h3>
+                        <p>Me dedique por muchos años a este maravilloso deporte, llegue a un aspecto semiprofesional siendo preseleccionado nacional.</p>
+                    </div>
+                </div>
+                
+                <div class="hobby-card">
+                    <div class="hobby-content">
+                        <h3>Videojuegos</h3>
+                        <p>Es un pasatiempo que se fue dando con el tiempo primero con familia posteriormente con amigos.</p>
+                    </div>
+                </div>
+                
+                <div class="hobby-card">
+                    <div class="hobby-content">
+                        <h3>Viajar</h3>
+                        <p>Una pasion por viajes sin saber que pasara durante este ya que creo que este tiepo de emociones me llenan.</p>
+                    </div>
+                </div>
+                
+                <div class="hobby-card">
+                    <div class="hobby-content">
+                        <h3>Carpinteria</h3>
+                        <p>Soy muy espontaneo porque muchas veces me da por hacer muebles y ese tipo  de cosas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="teachers">
+            <h2>Profesores Destacados</h2>
+            <p>profe todo sea por aparecer arriba en la busqueda XD</p>
+            
+            <div class="teacher-card">
+                <img src="https://via.placeholder.com/80?text=Profesor1" alt="Profesor 1" class="teacher-img">
+                <div class="teacher-info">
+                    <div class="teacher-name">Ernesto Cuadros Vargas</div>
+                    <div class="teacher-subject">Introduccion de ciencia de la computacion</div>
+                </div>
+            </div>
+            
+            <div class="teacher-card">
+                <img src="https://via.placeholder.com/80?text=Profesor2" alt="Profesor 2" class="teacher-img">
+                <div class="teacher-info">
+                    <div class="teacher-name">Javier Benitez</div>
+                    <div class="teacher-subject">Taekwondo</div>
+                    <p>Durante 15 años fue el maestrode mayor rango en el Peru, formador integral de deportistas en la disciplina, quien me ayudo a llegar a seleccion nacional, pipipi pandemia profe :,c</p>
+                </div>
+            </div>
+            
+            <div class="teacher-card">
+                <img src="https://via.placeholder.com/80?text=Profesor3" alt="Profesor 3" class="teacher-img">
+                <div class="teacher-info">
+                    <div class="teacher-name">Urday Dioses Raul Adolfo</div>
+                    <div class="teacher-subject">Desarrollo de habilidades</div>
+                    <p>Profesor que muy aparte de su curso disctado  en la malla, da muy buenos consejos respecto a la formacion integral del estudiante</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact">
+            <h2>Contacto</h2>
+            <div class="contact-grid">
+                <div>
+                    <h3>Información de Contacto</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <span>Alvaro.apaza.luque@ucsp.edu.pe</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone contact-icon"></i>
+                        <span>+51 979695544</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt contact-icon"></i>
+                        <span>Arequipa, Peru</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-university contact-icon"></i>
+                        <span>Universidad Catolica San Pablo</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Alvaro Apaza. Con fe agarran la info para aparecen primero.</p>
+            <p>Diseñado y desarrollado con sangre , sudor y ayuda del tutorial de youtube XD.</p>
+            <div class="social-links" style="margin-top: 1rem;">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
